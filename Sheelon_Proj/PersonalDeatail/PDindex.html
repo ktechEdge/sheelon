@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="PDstyle.css">
+
+  <title>הרשמה</title>
+</head>
+<body>
+  <div id="container">
+  <h2>טופס הרשמה</h2>
+
+  <form id="registrationForm">
+    <label for="firstName">שם פרטי:</label>
+    <input type="text" id="firstName" required>
+
+    <label for="lastName">שם משפחה:</label>
+    <input type="text" id="lastName" required>
+
+    <label for="email">אימייל:</label>
+    <input type="email" id="email" required>
+
+    <label for="phone">טלפון:</label>
+    <input type="tel" id="phone" required>
+
+    <label for="major">מגמת לימוד:</label>
+    <input type="text" id="major" required>
+
+    <label for="nativeLanguage">שפת אם:</label>
+    <input type="text" id="nativeLanguage" required>
+
+    <label for="idNumber">מספר תעודת זהות:</label>
+    <input type="text" id="idNumber" required>
+
+    <label for="password">סיסמה אישית:</label>
+    <input type="password" id="password" required>
+
+    <button type="button" onclick="submitForm()">שלח</button>
+  </form>
+</div>
+  <script src="PDmain.js"></script>
+
+</body>
+</html>

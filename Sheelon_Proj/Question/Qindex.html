@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Qstyle.css">
+  <title>שאלון</title>
+</head>
+<body>
+  <div class="container">
+    <h2>שאלון</h2>
+    <form id="questionnaireForm">
+      <!-- שאלה 1 -->
+      <div class="form-group">
+        <label for="personalBackground"><h3>1. נתוני רקע אישיים:</h3></label>
+        <h5>נתוני רקע אישיים:
+            אני רוצה לשמוע קצת עליך. אנא ספר/י לנו על לימודיך, משפחתך והמעמד הסוציו-אקונומי שבו את/ה נמצא/ת (ניתן לכתוב כמה שורות).</h5>
+        <textarea id="personalBackground" name="personalBackground" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+   
+        <label for="newDraggableScale"> <h3>מענה באיזה מצב סוציו-אקונומי היית מגדיר את עצמך?(1-7):</h3></label>
+        
+        <input type="range" id="newDraggableScale" name="newDraggableScale" min="1" max="7" step="1" value="4">
+      </div>
+      <div class="form-group">
+       
+      </div>
+      <div class="form-group">
+        <h3> (כן/לא):</h3>
+        <label for="binaryAnswer1Yes">כן</label>
+        <input type="radio" id="binaryAnswer1Yes" name="binaryAnswer1" value="כן">
+        <label for="binaryAnswer1No">לא</label>
+        <input type="radio" id="binaryAnswer1No" name="binaryAnswer1" value="לא">
+      </div>
+
+      <!-- שאלה 2 -->
+      <div class="form-group">
+        <label for="learningAbility"><h3>2. מסוגלות עצמית בלמידה:</h3></label>
+        <h5>   מסוגלות עצמית בלמידה:
+            איך היית מתאר/ת את יכולותיך האישיות בלמידה? האם את/ה מרגיש/ה שיש לך הכוחות להתמודד עם אתגרי הלמידה?
+         
+        </h5>
+        <textarea id="learningAbility" name="learningAbility" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <h3> (1-7):</h3>
+        <input type="range" id="newDraggableScale" name="newDraggableScale" min="1" max="7" step="1" value="4">
+
+      </div>
+      <div class="form-group">
+        
+      </div>
+      <div class="form-group">
+        <h3>מענה בינארי (כן/לא):</h3>
+        <label for="binaryAnswer2Yes">כן</label>
+        <input type="radio" id="binaryAnswer2Yes" name="binaryAnswer2" value="כן">
+        <label for="binaryAnswer2No">לא</label>
+        <input type="radio" id="binaryAnswer2No" name="binaryAnswer2" value="לא">
+      </div>
+
+      <!-- שאלה 3 -->
+      <div class="form-group">
+        <label for="commitmentToStudies"><h3>3. מחויבות ללימודים:</h3></label>
+        <h5> מחויבות ללימודים:
+            עד כמה את/ה מחויב/ת ללמידה ולהשקעה בלימודים שלך? מהם המקורות שמניעים אותך להשקיע?</h5>
+        <textarea id="commitmentToStudies" name="commitmentToStudies" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <h3> (1-7):</h3>
+        <input type="range" id="newDraggableScale" name="newDraggableScale" min="1" max="7" step="1" value="4">
+
+      </div>
+      <div class="form-group">
+       
+      </div>
+      <div class="form-group">
+        <h3>מענה בינארי (כן/לא):</h3>
+        <label for="binaryAnswer3Yes">כן</label>
+        <input type="radio" id="binaryAnswer3Yes" name="binaryAnswer3" value="כן">
+        <label for="binaryAnswer3No">לא</label>
+        <input type="radio" id="binaryAnswer3No" name="binaryAnswer3" value="לא">
+      </div>
+
+      <!-- שאלה 4 -->
+      <div class="form-group">
+        <label for="socialEase"><h3>4. נינוחות חברתית:</h3></label>
+        <h5> נינוחות חברתית:
+            האם את/ה מרגיש/ה בנוח/ה בקרבת אנשים ובמערכת חברתית? האם יש לך קשיים מסוימים או מאפיינים שאולי משפיעים על נינוחות החברתית שלך?</h5>
+        <textarea id="socialEase" name="socialEase" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <h3>מענה סקאלה (1-7):</h3>
+        <input type="range" id="newDraggableScale" name="newDraggableScale" min="1" max="7" step="1" value="4">
+
+      </div>
+      <div class="form-group">
+        
+      </div>
+      <div class="form-group">
+        <h3>מענה בינארי (כן/לא):</h3>
+        <label for="binaryAnswer4Yes">כן</label>
+        <input type="radio" id="binaryAnswer4Yes" name="binaryAnswer4" value="כן">
+        <label for="binaryAnswer4No">לא</label>
+        <input type="radio" id="binaryAnswer4No" name="binaryAnswer4" value="לא">
+      </div>
+
+      <!-- שאלה 5 -->
+      <div class="form-group">
+        <label for="selfDiscipline"><h3>5. משמעת עצמית:</h3>
+            <h5> משמעת עצמית:
+                האם את/ה מסוגל/ת להקצות זמן ומשאבים למטרות הלמידה שלך? האם את/ה מצליח/ה לשמור על סדר יומיומי ותוכנית למידה?</h5>
+        </label>
+        
+        <textarea id="selfDiscipline" name="selfDiscipline" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <h3>מענה סקאלה (1-7):</h3>
+        <input type="range" id="newDraggableScale" name="newDraggableScale" min="1" max="7" step="1" value="4">
+
+      </div>
+      <div class="form-group">
+        
+      </div>
+      <div class="form-group">
+        <h3>מענה בינארי (כן/לא):</h3>
+        <label for="binaryAnswer5Yes">כן</label>
+        <input type="radio" id="binaryAnswer5Yes" name="binaryAnswer5" value="כן">
+        <label for="binaryAnswer5No">לא</label>
+        <input type="radio" id="binaryAnswer5No" name="binaryAnswer5" value="לא">
+      </div>
+
+      <!-- שאלה 6 -->
+      <div class="form-group">
+        <label for="emotionalResilience"><h3>6. חוסן רגשי:</h3></label>
+        <h5> חוסן רגשי:
+            איך את/ה מתמודד/ת עם קשיים ואתגרים בלמידה? האם יש לך אסטרטגיות ספציפיות שמסייעות לך להתמודד עם רגשות של כשלון או עקרונות שמסייעים לך להתמודד עם לחצים?</h5>
+        <textarea id="emotionalResilience" name="emotionalResilience" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <h3>מענה סקאלה (1-7):</h3>
+        <input type="range" id="newDraggableScale" name="newDraggableScale" min="1" max="7" step="1" value="4">
+
+      </div>
+      <div class="form-group">
+        
+      </div>
+      <div class="form-group">
+        <h3>מענה בינארי (כן/לא):</h3>
+        <label for="binaryAnswer6Yes">כן</label>
+        <input type="radio" id="binaryAnswer6Yes" name="binaryAnswer6" value="כן">
+        <label for="binaryAnswer6No">לא</label>
+        <input type="radio" id="binaryAnswer6No" name="binaryAnswer6" value="לא">
+      </div>
+
+
+
+      
+      <button type="submit">שלח</button>
+    </form>
+  </div>
+  <script src="Qmain.js"></script>
+</body>
+</html>
