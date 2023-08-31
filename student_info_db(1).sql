@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2023 at 09:37 PM
+-- Generation Time: Aug 31, 2023 at 10:02 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -53,7 +53,6 @@ CREATE TABLE `question_id` (
 CREATE TABLE `student_answers` (
   `student_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
-  `Category_ID` int(11) NOT NULL,
   `Answer_Int` int(11) NOT NULL,
   `Answer_Str` varchar(250) NOT NULL,
   `Answer_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -71,7 +70,7 @@ CREATE TABLE `student_id` (
   `Last_Name` varchar(250) NOT NULL,
   `Email` varchar(250) NOT NULL,
   `CellPhoneNum` int(11) NOT NULL,
-  `Study_Field` varchar(250) NOT NULL,
+  `Study_Field` int(11) NOT NULL,
   `Native_Lan` varchar(250) NOT NULL,
   `ID_Num` int(11) NOT NULL,
   `Password` varchar(250) NOT NULL
