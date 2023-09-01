@@ -17,11 +17,11 @@ app.post('/',(req,res)=>{
 
 app.post("/AddQuestion",(req,res)=>{
     let questObj = {};
-    questObj.questType = req.body.QuestType;
-    questObj.dimension = req.body.Dimension;
+    questObj.category =Number(req.body.Category_id);
+    questObj.questType = Number(req.body.QuestType);
     questObj.questContent = req.body.QuestContent;
 
-    const addQuery = `INSERT INTO question_id(Question_Type,Question_Text) VALUES(${questObj.questType},${questObj.dimension})`;
+    const addQuery = `INSERT INTO question_id(Category_id,Question_Type,Question_Text) VALUES(${questObj.category},${questObj.questType},'${questObj.questContent}')`;
     db_pool.query(addQuery,function (err,rows,fields){
         if (err){
             res.status(500).json({message:err});
@@ -32,13 +32,13 @@ app.post("/AddQuestion",(req,res)=>{
     console.log(questObj);
 });
 app.post("/UpdateQuestion",(req ,res)=>{
-    let inx = req.body.index;
+    let inx = Number(req.body.index);
     let questObj = {};
-    questObj.questType = req.body.QuestType;
-    questObj.dimension = req.body.Dimension;
+    questObj.category =Number(req.body.Category_id);
+    questObj.questType = Number(req.body.QuestType);
     questObj.questContent = req.body.QuestContent;
 
-    const addQuery = `UPDATE question_id SET Question_Type WHERE ID = ${inx}`;
+    const addQuery = `UPDATE question_id SET Category_id = ${questObj.category},Question_Type = ${questObj.questType},Question_Text = '${questObj.questContent}'  WHERE ID = ${inx}`;
     db_pool.query(addQuery,function (err,rows,fields){
         if (err){
             res.status(500).json({message:err});
@@ -46,11 +46,9 @@ app.post("/UpdateQuestion",(req ,res)=>{
             res.status(200).json({fields:fields,rows:rows});
         }
     })
-    res.send(`row - ${inx} updated`);
-    console.log(inx);
 })
 app.post("/DeleteQuestion",(req, res) => {
-    let inx = req.body.index;
+    let inx = Number(req.body.index);
     const addQuery = `DELETE FROM question_id WHERE ID = ${inx}`;
     db_pool.query(addQuery,function (err,rows,fields){
         if (err){
