@@ -32,13 +32,13 @@ app.post("/AddQuestion",(req,res)=>{
     console.log(questObj);
 });
 app.post("/UpdateQuestion",(req ,res)=>{
-    let inx = Number(req.body.index);
+    let quest_id = Number(req.body.Quest_id);
     let questObj = {};
     questObj.category =Number(req.body.Category_id);
     questObj.questType = Number(req.body.QuestType);
     questObj.questContent = req.body.QuestContent;
 
-    const addQuery = `UPDATE question_id SET Category_id = ${questObj.category},Question_Type = ${questObj.questType},Question_Text = '${questObj.questContent}'  WHERE ID = ${inx}`;
+    const addQuery = `UPDATE question_id SET Category_id = ${questObj.category},Question_Type = ${questObj.questType},Question_Text = '${questObj.questContent}'  WHERE ID = ${quest_id}`;
     db_pool.query(addQuery,function (err,rows,fields){
         if (err){
             res.status(500).json({message:err});
@@ -48,8 +48,8 @@ app.post("/UpdateQuestion",(req ,res)=>{
     })
 })
 app.post("/DeleteQuestion",(req, res) => {
-    let inx = Number(req.body.index);
-    const addQuery = `DELETE FROM question_id WHERE ID = ${inx}`;
+    let quest_id = Number(req.body.Quest_id);
+    const addQuery = `DELETE FROM question_id WHERE ID = ${quest_id}`;
     db_pool.query(addQuery,function (err,rows,fields){
         if (err){
             res.status(500).json({message:err});
@@ -57,7 +57,7 @@ app.post("/DeleteQuestion",(req, res) => {
             res.status(200).json({fields:fields,rows:rows});
         }
     })
-    res.send("row - "+ inx + " deleted");
+
 });
 
 app.get("/ReadQuestion",(req, res) => {

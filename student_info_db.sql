@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2023 at 11:58 PM
+-- Generation Time: Sep 01, 2023 at 09:18 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,11 +24,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `category_id`
+--
+
+CREATE TABLE `category_id` (
+  `ID` int(11) NOT NULL,
+  `Category_Text` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `question_id`
 --
 
 CREATE TABLE `question_id` (
   `ID` int(11) NOT NULL,
+  `Category_ID` int(11) NOT NULL,
   `Question_Type` int(11) NOT NULL,
   `Question_Text` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -56,7 +68,13 @@ CREATE TABLE `student_answers` (
 CREATE TABLE `student_id` (
   `ID` int(11) NOT NULL,
   `First_Name` varchar(250) NOT NULL,
-  `Last_Name` varchar(250) NOT NULL
+  `Last_Name` varchar(250) NOT NULL,
+  `Email` varchar(250) NOT NULL,
+  `CellPhoneNum` int(11) NOT NULL,
+  `Study_Field` int(11) NOT NULL,
+  `Native_Lan` varchar(250) NOT NULL,
+  `ID_Num` int(11) NOT NULL,
+  `Password` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -64,20 +82,41 @@ CREATE TABLE `student_id` (
 --
 
 --
+-- Indexes for table `category_id`
+--
+ALTER TABLE `category_id`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `question_id`
 --
 ALTER TABLE `question_id`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Category_ID` (`Category_ID`);
+
+--
+-- Indexes for table `student_answers`
+--
+ALTER TABLE `student_answers`
+  ADD KEY `question_id` (`question_id`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Indexes for table `student_id`
 --
 ALTER TABLE `student_id`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Password` (`Password`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `category_id`
+--
+ALTER TABLE `category_id`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `question_id`
@@ -90,6 +129,23 @@ ALTER TABLE `question_id`
 --
 ALTER TABLE `student_id`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `question_id`
+--
+ALTER TABLE `question_id`
+  ADD CONSTRAINT `question_id_ibfk_1` FOREIGN KEY (`Category_ID`) REFERENCES `category_id` (`ID`);
+
+--
+-- Constraints for table `student_answers`
+--
+ALTER TABLE `student_answers`
+  ADD CONSTRAINT `student_answers_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question_id` (`ID`),
+  ADD CONSTRAINT `student_answers_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student_id` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
