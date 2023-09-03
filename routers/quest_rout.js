@@ -3,12 +3,11 @@ const router = express.Router();
 module.exports = router;
 
 
-router.post("/AddQuestion",(req,res)=>{
+router.post("/Add",(req,res)=>{
     let questObj = {};
     questObj.category =Number(req.body.Category_id);
     questObj.questType = Number(req.body.QuestType);
     questObj.questContent = req.body.QuestContent;
-
     const addQuery = `INSERT INTO question_id(Category_id,Question_Type,Question_Text) VALUES(${questObj.category},${questObj.questType},'${questObj.questContent}')`;
     db_pool.query(addQuery,function (err,rows,fields){
         if (err){
@@ -19,7 +18,7 @@ router.post("/AddQuestion",(req,res)=>{
     })
     console.log(questObj);
 });
-router.post("/UpdateQuestion",(req ,res)=>{
+router.post("/Update",(req ,res)=>{
     let quest_id = Number(req.body.Quest_id);
     let questObj = {};
     questObj.category =Number(req.body.Category_id);
@@ -35,7 +34,7 @@ router.post("/UpdateQuestion",(req ,res)=>{
         }
     })
 })
-router.post("/DeleteQuestion",(req, res) => {
+router.post("/Delete",(req, res) => {
     let quest_id = Number(req.body.Quest_id);
     const addQuery = `DELETE FROM question_id WHERE ID = ${quest_id}`;
     db_pool.query(addQuery,function (err,rows,fields){
@@ -48,7 +47,7 @@ router.post("/DeleteQuestion",(req, res) => {
 
 });
 
-router.get("/ReadQuestion",(req, res) => {
+router.get("/List",(req, res) => {
     const addQuery = `SELECT * FROM question_id`;
     db_pool.query(addQuery,function (err,rows,fields){
         if (err) res.status(500).json({message: err});
