@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/sheelon.iml
+/.idea/vcs.xml
+/gen_params.js
