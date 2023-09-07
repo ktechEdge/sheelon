@@ -48,7 +48,7 @@ router.delete("/Delete/:Quest_id",(req, res) => {
 
 router.get("/List",(req, res) => {
     let categoryId = Number(req.body.cat_Id);
-    let addQuery = `SELECT * FROM question_id `;
+    let addQuery = `SELECT * FROM question_tbl `;
     if ( categoryId > 0) addQuery += `WHERE Category_id = ${categoryId}`;
     db_pool.query(addQuery,function (err,rows,fields){
         if (err) res.status(500).json({message: err});
