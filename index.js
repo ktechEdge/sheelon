@@ -12,8 +12,10 @@ global.db_pool = db_M.pool;
 
 const quest_rtr = require('./routers/quest_rout');
 const front_rtr = require('./routers/fe_Checks_R');
+const users_rtr = require('./routers/users_rout');
 app.use('/Question', quest_rtr);
 app.use('/Front', front_rtr);
+app.use('/Users', users_rtr);
 
 app.listen(port, () => {            //server starts listening for any attempts from a client to connect at port: {port}
     console.log(`Now listening on port http://localhost:${port}`);
