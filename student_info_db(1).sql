@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2023 at 10:02 PM
+-- Generation Time: Sep 08, 2023 at 07:30 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,33 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_id`
+-- Table structure for table `answers_tbl`
 --
 
-CREATE TABLE `category_id` (
-  `ID` int(11) NOT NULL,
-  `Category_Text` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `question_id`
---
-
-CREATE TABLE `question_id` (
-  `ID` int(11) NOT NULL,
-  `Question_Type` int(11) NOT NULL,
-  `Question_Text` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `student_answers`
---
-
-CREATE TABLE `student_answers` (
+CREATE TABLE `answers_tbl` (
+  `Answer_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
   `Answer_Int` int(11) NOT NULL,
@@ -58,13 +36,75 @@ CREATE TABLE `student_answers` (
   `Answer_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `answers_tbl`
+--
+
+INSERT INTO `answers_tbl` (`Answer_id`, `student_id`, `question_id`, `Answer_Int`, `Answer_Str`, `Answer_Time`) VALUES
+(1, 1, 3, 4, 'hell yea!', '2023-09-07 21:00:00'),
+(2, 2, 3, 4, 'yes!', '2023-09-06 21:00:00'),
+(3, 3, 4, 8, 'no way!', '2023-09-06 21:00:00');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_id`
+-- Table structure for table `category_tbl`
 --
 
-CREATE TABLE `student_id` (
+CREATE TABLE `category_tbl` (
+  `ID` int(11) NOT NULL,
+  `Category_Text` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `category_tbl`
+--
+
+INSERT INTO `category_tbl` (`ID`, `Category_Text`) VALUES
+(1, 'play'),
+(6, 'student motivation'),
+(7, 'resiliance'),
+(10, 'have time for study'),
+(12, 'is motivated');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `question_tbl`
+--
+
+CREATE TABLE `question_tbl` (
+  `ID` int(11) NOT NULL,
+  `Category_ID` int(11) NOT NULL,
+  `Question_Type` int(11) NOT NULL,
+  `Question_Text` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `question_tbl`
+--
+
+INSERT INTO `question_tbl` (`ID`, `Category_ID`, `Question_Type`, `Question_Text`) VALUES
+(1, 1, 2, 'michael'),
+(3, 1, 1, 'what is 1 div 1'),
+(4, 1, 2, 'adsda'),
+(5, 1, 2, 'adsda'),
+(6, 1, 2, 'adsda'),
+(7, 1, 2, 'adsda'),
+(8, 1, 2, 'adsda'),
+(9, 1, 2, 'adsda'),
+(10, 1, 2, 'adsda'),
+(11, 1, 2, 'adsda'),
+(12, 1, 2, 'adsda'),
+(13, 1, 2, 'adsda');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_tbl`
+--
+
+CREATE TABLE `users_tbl` (
   `ID` int(11) NOT NULL,
   `First_Name` varchar(250) NOT NULL,
   `Last_Name` varchar(250) NOT NULL,
@@ -73,7 +113,8 @@ CREATE TABLE `student_id` (
   `Study_Field` int(11) NOT NULL,
   `Native_Lan` varchar(250) NOT NULL,
   `ID_Num` int(11) NOT NULL,
-  `Password` varchar(250) NOT NULL
+  `Password` varchar(250) NOT NULL,
+  `LVL` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -81,21 +122,30 @@ CREATE TABLE `student_id` (
 --
 
 --
--- Indexes for table `category_id`
+-- Indexes for table `answers_tbl`
 --
-ALTER TABLE `category_id`
+ALTER TABLE `answers_tbl`
+  ADD PRIMARY KEY (`Answer_id`),
+  ADD KEY `question_id` (`question_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `category_tbl`
+--
+ALTER TABLE `category_tbl`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `question_id`
+-- Indexes for table `question_tbl`
 --
-ALTER TABLE `question_id`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `question_tbl`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Category_ID` (`Category_ID`);
 
 --
--- Indexes for table `student_id`
+-- Indexes for table `users_tbl`
 --
-ALTER TABLE `student_id`
+ALTER TABLE `users_tbl`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Password` (`Password`);
 
@@ -104,22 +154,44 @@ ALTER TABLE `student_id`
 --
 
 --
--- AUTO_INCREMENT for table `category_id`
+-- AUTO_INCREMENT for table `answers_tbl`
 --
-ALTER TABLE `category_id`
+ALTER TABLE `answers_tbl`
+  MODIFY `Answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `category_tbl`
+--
+ALTER TABLE `category_tbl`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `question_tbl`
+--
+ALTER TABLE `question_tbl`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `users_tbl`
+--
+ALTER TABLE `users_tbl`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `question_id`
+-- Constraints for dumped tables
 --
-ALTER TABLE `question_id`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `student_id`
+-- Constraints for table `answers_tbl`
 --
-ALTER TABLE `student_id`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `answers_tbl`
+  ADD CONSTRAINT `answers_tbl_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question_tbl` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `question_tbl`
+--
+ALTER TABLE `question_tbl`
+  ADD CONSTRAINT `question_tbl_ibfk_1` FOREIGN KEY (`Category_ID`) REFERENCES `category_tbl` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
