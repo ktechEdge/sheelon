@@ -27,3 +27,8 @@
     color: aliceblue;
     background-color: black;
 }
+@media screen and (min-width: 1000px) {
+    .login-form .user-info-form input {
+    width: max-content;
+    }
+}
