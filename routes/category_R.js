@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router()
 module.exports = router;
 
-router.get("/",(req, res) => {
-
-    res.render("mainPage", {pageTitle:"hello world"});
-
-});
 router.post("/Add",(req, res) => {
 
     let cat_Text=req.body.CatContent;
@@ -19,16 +14,13 @@ router.post("/Add",(req, res) => {
             res.status(500).json({message: err})
             // throw err;
         }else{
-            res.status(200).json({message: "Added"});
+            res.status(200).json({message: "Category Added",Last_Id:rows.insertId});
             // res.status(200).json({message: "Added"});
             // res.status(200).json(req.crs_data_filtered);
         }
 
     });
-
-
-    // res.send("good morning");
-});//:row_id
+});
 router.patch("/Edit",(req, res) => {
 
     let id=req.body.Cat_id;
@@ -45,7 +37,7 @@ router.patch("/Edit",(req, res) => {
             res.status(200).json({message: "Updated"});
         }
     });
-});////:row_id
+});
 router.delete("/Del",(req, res) => {
         let id=req.body.Cat_id;
 
@@ -64,8 +56,6 @@ router.delete("/Del",(req, res) => {
 
     });
 
-
-    // res.send("good morning");
 });
 
 router.get("/List",(req, res) => {
@@ -82,11 +72,7 @@ router.get("/List",(req, res) => {
         else
         {
             res.status(200).json(rows );
-            // res.status(200).json({message: "Added"});
-            // res.status(200).json(req.crs_data_filtered);
         }
     });
 
-
-    // res.send("good morning");
 });
