@@ -28,14 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `answers_tbl` (
+  `Answer_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
   `Answer_Int` int(11) NOT NULL,
   `Answer_Str` varchar(250) NOT NULL,
   `Answer_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+INSERT INTO `answers_tbl` (`Answer_id`, `student_id`, `question_id`, `Answer_Int`, `Answer_Str`, `Answer_Time`) VALUES
+(1, 1, 3, 4, 'hell yea!', '2023-09-07 21:00:00'),
+(2, 2, 3, 4, 'yes!', '2023-09-06 21:00:00'),
+(3, 3, 4, 8, 'no way!', '2023-09-06 21:00:00');
 
 --
 -- Table structure for table `category_tbl`
@@ -114,7 +119,8 @@ CREATE TABLE `users_tbl` (
 -- Indexes for table `answers_tbl`
 --
 ALTER TABLE `answers_tbl`
-  ADD KEY `question_id` (`question_id`),
+  ADD PRIMARY KEY (`Answer_id`),
+    ADD KEY `question_id` (`question_id`),
   ADD KEY `student_id` (`student_id`);
 
 --
@@ -141,6 +147,11 @@ ALTER TABLE `users_tbl`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `answers_tbl`
+--
+ALTER TABLE `answers_tbl`
+  MODIFY `Answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `category_tbl`
 --
