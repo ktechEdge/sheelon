@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2023 at 11:04 AM
+-- Generation Time: Sep 15, 2023 at 08:43 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,13 +34,18 @@ CREATE TABLE `answers_tbl` (
   `Answer_Int` int(11) NOT NULL,
   `Answer_Str` varchar(250) NOT NULL,
   `Answer_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `answers_tbl`
+--
+
 INSERT INTO `answers_tbl` (`Answer_id`, `student_id`, `question_id`, `Answer_Int`, `Answer_Str`, `Answer_Time`) VALUES
 (1, 1, 3, 4, 'hell yea!', '2023-09-07 21:00:00'),
 (2, 2, 3, 4, 'yes!', '2023-09-06 21:00:00'),
 (3, 3, 4, 8, 'no way!', '2023-09-06 21:00:00');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `category_tbl`
@@ -78,7 +83,6 @@ CREATE TABLE `question_tbl` (
 
 INSERT INTO `question_tbl` (`ID`, `Category_ID`, `Question_Type`, `Question_Text`) VALUES
 (1, 1, 2, 'michael'),
-(3, 1, 1, 'what is 1 div 1'),
 (4, 1, 2, 'adsda'),
 (5, 1, 2, 'adsda'),
 (6, 1, 2, 'adsda'),
@@ -90,7 +94,8 @@ INSERT INTO `question_tbl` (`ID`, `Category_ID`, `Question_Type`, `Question_Text
 (12, 1, 2, 'adsda'),
 (13, 1, 2, 'adsda'),
 (17, 2, 2, 'adsda'),
-(18, 2, 2, 'adsda');
+(18, 2, 2, 'adsda'),
+(19, 2, 2, 'adsda');
 
 -- --------------------------------------------------------
 
@@ -103,13 +108,22 @@ CREATE TABLE `users_tbl` (
   `First_Name` varchar(250) NOT NULL,
   `Last_Name` varchar(250) NOT NULL,
   `Email` varchar(250) NOT NULL,
-  `CellPhoneNum` int(11) NOT NULL,
-  `Study_Field` int(11) NOT NULL,
-  `Native_Lan` varchar(250) NOT NULL,
-  `ID_Num` int(11) NOT NULL,
+  `CellPhoneNum` varchar(250) NOT NULL,
+  `Study_Field` tinyint(11) NOT NULL,
+  `Native_Lang` varchar(250) NOT NULL,
+  `ID_Num` varchar(250) NOT NULL,
   `Password` varchar(250) NOT NULL,
   `LVL` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `users_tbl`
+--
+
+INSERT INTO `users_tbl` (`ID`, `First_Name`, `Last_Name`, `Email`, `CellPhoneNum`, `Study_Field`, `Native_Lang`, `ID_Num`, `Password`, `LVL`) VALUES
+(1, 'zion', 'amar', 'mnh868441@gamil.com', '539212153', 2, 'undefined', '212007306', 'onaod', 'student'),
+(4, 'zion', 'amar', 'mnh868441@gamil.com', '539212153', 2, 'undefined', '212007306', 'onaopooij0id', 'student'),
+(6, 'zion', 'amar', 'mnh868441@gamil.com', '539212153', 2, 'ibiub', '212007306', 'lkn', 'student');
 
 --
 -- Indexes for dumped tables
@@ -120,7 +134,7 @@ CREATE TABLE `users_tbl` (
 --
 ALTER TABLE `answers_tbl`
   ADD PRIMARY KEY (`Answer_id`),
-    ADD KEY `question_id` (`question_id`),
+  ADD KEY `question_id` (`question_id`),
   ADD KEY `student_id` (`student_id`);
 
 --
@@ -152,6 +166,7 @@ ALTER TABLE `users_tbl`
 --
 ALTER TABLE `answers_tbl`
   MODIFY `Answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `category_tbl`
 --
@@ -162,30 +177,13 @@ ALTER TABLE `category_tbl`
 -- AUTO_INCREMENT for table `question_tbl`
 --
 ALTER TABLE `question_tbl`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users_tbl`
 --
 ALTER TABLE `users_tbl`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `answers_tbl`
---
-ALTER TABLE `answers_tbl`
-  ADD CONSTRAINT `answers_tbl_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question_tbl` (`ID`),
-  ADD CONSTRAINT `answers_tbl_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users_tbl` (`ID`);
-
---
--- Constraints for table `question_tbl`
---
-ALTER TABLE `question_tbl`
-  ADD CONSTRAINT `question_tbl_ibfk_1` FOREIGN KEY (`Category_ID`) REFERENCES `category_tbl` (`ID`);
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
