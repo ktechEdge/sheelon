@@ -18,6 +18,8 @@ const category_rtr = require('./routers/category_R');
 app.use('/categories', category_rtr );
 const Answers_rtr = require('./routers/Answers_R');
 app.use('/answers', Answers_rtr );
+const users_rtr = require('./routers/users_rout');
+app.use('/users', users_rtr );
 
 
 app.listen(port, () => {            //server starts listening for any attempts from a client to connect at port: {port}

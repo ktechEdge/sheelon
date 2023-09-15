@@ -4,10 +4,10 @@ module.exports = router;
 
 let UsersObj = {};
 router.post("/Add",(req,res)=>{
-    let{First_Name,Last_Name,Email,CellPhoneNum,Study_Field,Native_Lang,ID_Num,Password,LVL} = req.body;
+    let{First_Name,Last_Name,Email,CellPhoneNum,Study_Field,Native_Lan,ID_Num,Password,LVL} = req.body;
     let Query = `INSERT INTO users_tbl`;
-          Query +=`(First_Name,Last_Name,Email,CellPhoneNum,Study_Field,Native_Lang,ID_Num,Password,LVL) `;
-          Query += `VALUES('${First_Name}','${Last_Name}','${Email}',${CellPhoneNum},${Study_Field},'${Native_Lang}',${ID_Num},'${Password}','${LVL}')`;
+          Query +=`(First_Name,Last_Name,Email,CellPhoneNum,Study_Field,Native_Lan,ID_Num,Password,LVL) `;
+          Query += `VALUES('${First_Name}','${Last_Name}','${Email}',${CellPhoneNum},${Study_Field},'${Native_Lan}',${ID_Num},'${Password}','${LVL}')`;
     db_pool.query(Query,function (err,rows,fields,){
         if (err){
             res.status(500).json({message:err});
@@ -18,11 +18,23 @@ router.post("/Add",(req,res)=>{
     console.log(UsersObj);
 });
 router.patch("/Update/:id",(req ,res)=>{
-    let{First_Name,Last_Name,Email,CellPhoneNum,Study_Field,Native_Lang,ID_Num,Password,LVL} = req.body;
+    let{First_Name,Last_Name,Email,CellPhoneNum,Study_Field,Native_Lan,ID_Num,LVL} = req.body;
     let ID = req.params.id;
     let Query = `UPDATE users_tbl SET First_Name = '${First_Name}',Last_Name = '${Last_Name}',`;
         Query += `Email = '${Email}',CellPhoneNum = ${CellPhoneNum},Study_Field = ${Study_Field},`;
-        Query += `Native_Lang = '${Native_Lang}',ID_Num = ${ID_Num},Password = '${Password}',LVL = '${LVL}'  WHERE ID = ${ID}`;
+        Query += `Native_Lan = '${Native_Lan}',ID_Num = ${ID_Num},LVL = '${LVL}'  WHERE ID = ${ID}`;
+    db_pool.query(Query,function (err,rows,fields){
+        if (err){
+            res.status(500).json({message:err});
+        }else{
+            res.status(200).json({message:"OK"});
+        }
+    })
+})
+router.patch("/UpdatePass/:id",(req ,res)=>{
+    let{Password} = req.body;
+    let ID = req.params.id;
+    let Query = `UPDATE users_tbl SET Password = '${Password}'  WHERE ID = ${ID}`;
     db_pool.query(Query,function (err,rows,fields){
         if (err){
             res.status(500).json({message:err});
