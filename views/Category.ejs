@@ -1,0 +1,23 @@
+<%- include ("page_top.ejs") %>
+<div id="CatWrapper">
+
+    <table>
+        <thead>
+        <tr>
+            <td>מזהה</td>
+            <td>קטגוריה</td>
+            <td>מחיקת שורה</td>
+            <td>עריכת שורה</td>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br>
+    <div id="InputContainer">
+        <label for="UpdateInput">קטגוריה :</label>
+        <input type="text" id="UpdateInput">
+        <button onclick="AddLine()">הוסף קטגוריה</button>
+    </div>
+</div>
+<script src='../js/Category.js'></script>
+<%- include ("page_bottom.ejs") %>

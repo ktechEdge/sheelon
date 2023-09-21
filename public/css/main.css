@@ -1,4 +1,6 @@
 @import "colors.css";
+@import "table.css";
+@import "Category.css";
 @import "menu.css";
 @import "login.css";
 @import "struct.css" screen and (min-width: 1000px);

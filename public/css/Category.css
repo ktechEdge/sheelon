@@ -1,0 +1,33 @@
+#CatWrapper {
+    width: 100%;
+    padding-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 5rem;
+}
+
+#CatWrapper table {
+    width: 80%;
+}
+
+#CatWrapper #InputContainer * {
+    font-size: larger;
+}
+
+#CatWrapper .tableBtn:hover {
+    background-color: lightgray;
+}
+
+@media screen And (max-width: 550px) {
+    #CatWrapper #InputContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #CatWrapper #InputContainer * {
+        margin-top: 0.5rem;
+    }
+}
