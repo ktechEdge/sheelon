@@ -67,3 +67,27 @@ router.get("/List",(req, res) => {
     });
 
 });
+
+router.post("/AnsCal",(req, res) => {
+
+    let {student_id,Category_ID} =req.body;
+    let q=`SELECT SUM(Answer_Int) FROM answers_tbl`;
+    q += ` WHERE student_id = ${student_id} AND`;
+    q += ` question_id IN (SELECT ID FROM question_tbl WHERE Category_ID = ${Category_ID})`;
+
+    db_pool.query(q, function(err, rows, fields){
+
+        if(err)
+        {
+            res.status(500).json({message: err})
+            // throw err;
+        }
+        else
+        {
+            res.status(200).json(rows );
+            // res.status(200).json({message: "Added"});
+            // res.status(200).json(req.crs_data_filtered);
+        }
+    });
+});
+
