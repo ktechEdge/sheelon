@@ -70,12 +70,27 @@ router.get("/List",(req, res) => {
 
 router.post("/AnsCal",(req, res) => {
 
-    let {student_id,Category_ID} =req.body;
-    let q=`SELECT SUM(Answer_Int) FROM answers_tbl`;
-    q += ` WHERE student_id = ${student_id} AND`;
-    q += ` question_id IN (SELECT ID FROM question_tbl WHERE Category_ID = ${Category_ID})`;
+    let {student_id} =req.body;
 
-    db_pool.query(q, function(err, rows, fields){
+    let q1=`SELECT C.Category_Text, SUM(A.Answer_Int) AS 'GRADE'`;
+        q1 += ` FROM question_tbl Q JOIN answers_tbl A`;
+        q1 += ` ON Q.ID = A.question_id JOIN  category_tbl C`;
+        q1 += ` ON C.ID = Q.Category_ID WHERE A.student_id = ${student_id} GROUP BY C.Category_Text`;
+     let   q2 = ` SELECT SUM(Answer_Int) FROM answers_tbl WHERE student_id = ${student_id}`;
+
+    db_pool.query(q1, function(err, rows, fields) {
+
+        if (err) {
+            res.status(500).json({message: err})
+            // throw err;
+        } else {
+            res.status(200).json(rows);
+            // res.status(200).json({message: "Added"});
+            // res.status(200).json(req.crs_data_filtered);
+        }
+
+    });
+     db_pool.query(q2, function(err, rows, fields){
 
         if(err)
         {
@@ -84,7 +99,7 @@ router.post("/AnsCal",(req, res) => {
         }
         else
         {
-            res.status(200).json(rows );
+            res.status(200).json(rows);
             // res.status(200).json({message: "Added"});
             // res.status(200).json(req.crs_data_filtered);
         }
