@@ -1,6 +1,25 @@
 <%- include ("page_top.ejs") %>
-<div id="CatWrapper">
-
+<div class="CatWrapper">
+    <div id="Add-Input-Container">
+        <label for="Add-row-Input">שם קטגוריה :</label>
+        <input type="text" id="Add-row-Input">
+        <button onclick="AddLine()">הוסף קטגוריה</button>
+    </div>
+    <dialog class="popup">
+        <div class="popup-Heading">
+            <button onclick="togglePopup()">X</button>
+            <h3>ערוך שורה</h3>
+        </div>
+        <br>
+        <div class="popup-body">
+            <span id="Current-Category"></span><br>
+            <label for="Update-row-Input">שם חדש: </label>
+            <input type="text" id="Update-row-Input" ><br>
+        </div>
+        <div id="Update-Btn" class="popup-body">
+        </div>
+    </dialog>
+    <br>
     <table>
         <thead>
         <tr>
@@ -13,11 +32,6 @@
         <tbody></tbody>
     </table>
     <br>
-    <div id="InputContainer">
-        <label for="UpdateInput">קטגוריה :</label>
-        <input type="text" id="UpdateInput">
-        <button onclick="AddLine()">הוסף קטגוריה</button>
-    </div>
 </div>
 <script src='../js/Category.js'></script>
 <%- include ("page_bottom.ejs") %>
