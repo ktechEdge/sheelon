@@ -69,9 +69,8 @@ router.get("/List",(req, res) => {
 });
 
 router.post("/AnsCal",(req, res) => {
-
+    let totalCal = 0;
     let {student_id} =req.body;
-
     let q1=`SELECT C.Category_Text, SUM(A.Answer_Int) AS 'GRADE'`;
         q1 += ` FROM question_tbl Q JOIN answers_tbl A`;
         q1 += ` ON Q.ID = A.question_id JOIN  category_tbl C`;
@@ -84,24 +83,10 @@ router.post("/AnsCal",(req, res) => {
             res.status(500).json({message: err})
             // throw err;
         } else {
-            res.status(200).json(rows);
-            // res.status(200).json({message: "Added"});
-            // res.status(200).json(req.crs_data_filtered);
-        }
-
-    });
-     db_pool.query(q2, function(err, rows, fields){
-
-        if(err)
-        {
-            res.status(500).json({message: err})
-            // throw err;
-        }
-        else
-        {
-            res.status(200).json(rows);
-            // res.status(200).json({message: "Added"});
-            // res.status(200).json(req.crs_data_filtered);
+            for (let i of rows) {
+                totalCal += Number(i.GRADE);
+            }
+            res.status(200).json({rows, totalCal})
         }
     });
 });
