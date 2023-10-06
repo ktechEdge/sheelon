@@ -1,0 +1,68 @@
+.CatWrapper {
+    width: 100%;
+    padding-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 5rem;
+}
+
+.CatWrapper table {
+    width: 80%;
+}
+
+.CatWrapper .tableBtn:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+@media screen And (max-width: 550px) {
+    .CatWrapper #Add-Input-Container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .CatWrapper #Add-Input-Container * {
+        margin-top: 0.5rem;
+    }
+}
+
+.CatWrapper .popup {
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 5px grey;
+}
+
+.popup .popup-Heading {
+    height: 40%;
+    position: relative;
+}
+
+.popup .popup-Heading button {
+    border: none;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: inherit;
+}
+
+.popup .popup-Heading h3 {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+}
+
+.popup .popup-body {
+    height: 60%;
+    text-align: center;
+    font-size: larger;
+    margin: 20px;
+}
+
+.popup .popup-body button {
+    font-size: larger;
+}

@@ -1,0 +1,37 @@
+<%- include ("page_top.ejs") %>
+<div class="CatWrapper">
+    <div id="Add-Input-Container">
+        <label for="Add-row-Input">שם קטגוריה :</label>
+        <input type="text" id="Add-row-Input">
+        <button onclick="AddLine()">הוסף קטגוריה</button>
+    </div>
+    <dialog class="popup">
+        <div class="popup-Heading">
+            <button onclick="togglePopup()">X</button>
+            <h3>ערוך שורה</h3>
+        </div>
+        <br>
+        <div class="popup-body">
+            <span id="Current-Category"></span><br>
+            <label for="Update-row-Input">שם חדש: </label>
+            <input type="text" id="Update-row-Input" ><br>
+        </div>
+        <div id="Update-Btn" class="popup-body">
+        </div>
+    </dialog>
+    <br>
+    <table>
+        <thead>
+        <tr>
+            <td>מזהה</td>
+            <td>קטגוריה</td>
+            <td>מחיקת שורה</td>
+            <td>עריכת שורה</td>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br>
+</div>
+<script src='../js/Category.js'></script>
+<%- include ("page_bottom.ejs") %>

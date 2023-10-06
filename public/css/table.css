@@ -1,0 +1,14 @@
+table {
+    background-color: whitesmoke;
+}
+thead td{
+    border-bottom: 1px solid lightgray;
+}
+td {
+    padding: 5px;
+    text-align: center;
+    background-color: white;
+}
+tbody tr:nth-child(odd) td{
+    background-color: whitesmoke;
+}
